@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Porcino</title>
+</head>
+<body>
+    <h2 th:text="${porcino.id == null ? 'Añadir Porcino' : 'Editar Porcino'}"></h2>
+
+    <form th:action="@{/cliente/{id}/porcinos/guardar(id=${cliente.id})}" th:object="${porcino}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        
+        <label>Identificación:</label>
+        <input type="text" th:field="*{identificacion}" th:readonly="${porcino.id != null}"/><br/>
+
+        <label>Raza:</label>
+        <input type="text" th:field="*{raza}"/><br/>
+
+        <label>Edad:</label>
+        <input type="number" th:field="*{edad}"/><br/>
+
+        <label>Peso:</label>
+        <input type="number" th:field="*{peso}"/><br/>
+
+        <label>Alimentación:</label>
+        <select th:field="*{alimentacion.id}">
+            <option th:each="ali : ${alimentaciones}" th:value="${ali.id}" th:text="${ali.descripcion}"></option>
+        </select><br/>
+
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>

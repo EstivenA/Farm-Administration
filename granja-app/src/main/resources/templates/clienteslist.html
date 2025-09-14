@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Clientes</title>
+    <style>
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a.button, form button {
+            padding: 6px 12px;
+            margin: 2px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+        }
+        a.button {
+            background-color: #4CAF50;
+            color: white;
+        }
+        form button {
+            background-color: #f44336;
+            color: white;
+        }
+        a.button:hover {
+            background-color: #45a049;
+        }
+        form button:hover {
+            background-color: #da190b;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align: center;">Listado de Clientes</h2>
+
+    <a th:href="@{/admin/clientes/nuevo}">
+        <button>Añadir Cliente</button>
+    </a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Cédula</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.cedula}"></td>
+                <td th:text="${cliente.nombre}"></td>
+                <td th:text="${cliente.apellido}"></td>
+                <td th:text="${cliente.direccion}"></td>
+                <td th:text="${cliente.telefono}"></td>
+                <td th:text="${cliente.Rol}"></td>
+                <td>
+                    <a th:href="@{/admin/clientes/editar/{id}(id=${cliente.id})}" class="button">Editar</a>
+                    <form th:action="@{'/admin/clientes/eliminar/' + ${cliente.id}}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger"
+                            onclick="return confirm('¿Seguro que deseas eliminar este cliente?');">
+                        Eliminar
+                    </button>
+                </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/admin/home" class="btn btn-secondary">Volver al inicio</a>
+</body>
+</html>

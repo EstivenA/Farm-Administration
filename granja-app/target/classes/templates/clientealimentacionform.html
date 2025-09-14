@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Alimentación</title>
+</head>
+<body>
+    <h2 th:text="${alimentacion.id == null ? 'Añadir Alimentación' : 'Editar Alimentación'}"></h2>
+
+    <form th:action="@{'/cliente/'+ ${cliente.id} +'/alimentaciones/guardar'}" th:object="${alimentacion}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        
+        <label>Descripción:</label>
+        <input type="text" th:field="*{descripcion}"/><br/>
+
+        <label>Dosis:</label>
+        <input type="text" th:field="*{dosis}"/><br/>
+
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>

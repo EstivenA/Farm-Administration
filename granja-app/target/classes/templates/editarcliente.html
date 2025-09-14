@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Cliente</title>
+</head>
+<body>
+    <h2>Editar Cliente</h2>
+
+    <form th:action="@{/admin/clientes/editar/{id}(id=${cliente.id})}" method="post">
+        <input type="hidden" th:value="${cliente.id}" name="id"/>
+        <input type="hidden" th:value="${cliente.cedula}" name="cedula"/>
+        <input type="hidden" th:value="${cliente.username}" name="username"/>
+        <input type="hidden" th:value="${cliente.password}" name="password"/>
+        <input type="hidden" th:value="${cliente.rol}" name="rol"/>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" th:value="${cliente.nombre}" required><br><br>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" th:value="${cliente.apellido}" required><br><br>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" th:value="${cliente.direccion}" required><br><br>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" th:value="${cliente.telefono}" required><br><br>
+
+        <button type="submit">Guardar Cambios</button>
+    </form>
+
+    <p><a href="/admin/clientes">Volver al listado</a></p>
+</body>
+</html>

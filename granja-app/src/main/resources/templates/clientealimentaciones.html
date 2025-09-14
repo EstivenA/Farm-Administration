@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Alimentaciones</title>
+</head>
+<body>
+    <h2>Alimentaciones</h2>
+    <a th:href="@{'/cliente/' + ${cliente.id} + '/alimentaciones/nueva'}">➕ Añadir Alimentación</a>
+    <table border="1">
+        <tr>
+            <th>Descripción</th>
+            <th>Dosis</th>
+            <th>Acciones</th>
+        </tr>
+        <tr th:each="ali : ${alimentaciones}">
+            <td th:text="${ali.descripcion}"></td>
+            <td th:text="${ali.dosis}"></td>
+            <td>
+                <a th:href="@{'/cliente/' + ${cliente.id} + '/alimentaciones/editar/' + ${ali.id}}">Editar</a>
+            </td>
+        </tr>
+    </table>
+    <a th:href="@{'/cliente/home/' + ${cliente.id}}" class="btn btn-secondary">Volver al inicio</a>
+</body>
+</html>
